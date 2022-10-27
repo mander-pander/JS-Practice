@@ -97,15 +97,46 @@ var merge = function (nums1, m, nums2, n) {
 // Input: head = [1,1,2,3,3]
 // Output: [1,2,3]
 
-var deleteDuplicates = function(head) {
-    let current = head;
+// var deleteDuplicates = function(head) {
+//     let current = head;
 
-    while(current) {
-        if(current.next !== null && current.val == current.next.val) {
-            current.next = current.next.next;
+//     while(current) {
+//         if(current.next !== null && current.val == current.next.val) {
+//             current.next = current.next.next;
+//         } else {
+//             current = current.next;
+//         }
+//     }
+//     return head;
+// };
+
+// Given the head of a sorted linked list, delete all nodes that have
+//duplicate numbers, leaving only distinct numbers from the original
+//list. Return the linked list sorted as well.
+
+// Example 1:
+// Input: head = [1,2,3,3,4,4,5]
+// Output: [1,2,5]
+// Example 2:
+
+// Input: head = [1,1,1,2,3]
+// Output: [2,3]
+
+var deleteDuplicates = function(head) {
+    let temp = new ListNode(0);
+    temp.next = head;
+    let current = temp;
+
+    while(current.next !== null && current.next.next !== null) {
+        if(current.next.val === current.next.next.val) {
+            let match = current.next.val;
+
+            while(current.next !== null && current.next.val === match) {
+                current.next = current.next.next;
+            }
         } else {
             current = current.next;
         }
     }
-    return head;
+    return temp.next;
 };
