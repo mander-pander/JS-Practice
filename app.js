@@ -12,7 +12,7 @@
 // Output: 2
 // Explanation: The square root of 8 is 2.82842..., and since we round it down to the nearest integer, 2 is returned.
 
-var mySqrt = function(x) {
+var mySqrt = function (x) {
     let root = 1;
     while (root * root <= x) {
         root++;
@@ -34,9 +34,9 @@ var mySqrt = function(x) {
 // Output: 4
 // Explanation: The last word is "moon" with length 4.
 
-var lengthOfLastWord = function(s) {
+var lengthOfLastWord = function (s) {
     let stringArr = s.trim().split(' ');
-    return stringArr[stringArr.length-1].length;
+    return stringArr[stringArr.length - 1].length;
 };
 
 
@@ -64,7 +64,7 @@ var lengthOfLastWord = function(s) {
 // The result of the merge is [1].
 
 
-var merge = function(nums1, m, nums2, n) {
+var merge = function (nums1, m, nums2, n) {
     let i = 0;
     let j = 0;
 
@@ -79,4 +79,33 @@ var merge = function(nums1, m, nums2, n) {
             i++;
         }
     }
+};
+
+//////////////////////////
+// A linked list is a linear data structure similar to an array. However, unlike arrays, elements are not
+//stored in a particular memory location or index. Rather each element is a separate object that contains
+//a pointer or a link to the next object in that list.
+
+//Given the head of a sorted linked list, delete all duplicates such that each element appears only once.
+//Return the linked list sorted as well.
+
+//Example 1:
+//Input: head = [1,1,2]
+//Output: [1,2]
+
+// Example 2:
+// Input: head = [1,1,2,3,3]
+// Output: [1,2,3]
+
+var deleteDuplicates = function(head) {
+    let current = head;
+
+    while(current) {
+        if(current.next !== null && current.val == current.next.val) {
+            current.next = current.next.next;
+        } else {
+            current = current.next;
+        }
+    }
+    return head;
 };
