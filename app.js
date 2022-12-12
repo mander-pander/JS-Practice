@@ -257,3 +257,39 @@ var climbStairs = function(n) {
     }
     return current;
 };
+
+
+// Given an integer numRows, return the first numRows of Pascal's triangle.
+
+// In Pascal's triangle, each number is the sum of the two numbers directly above it.
+
+
+// Example 1:
+
+// Input: numRows = 5
+// Output: [[1],[1,1],[1,2,1],[1,3,3,1],[1,4,6,4,1]]
+
+// Example 2:
+
+// Input: numRows = 1
+// Output: [[1]]
+
+var generate = function(numRows) {
+    //create new array to store rows
+    const pascal = []
+
+    for (let i = 0; i < numRows; i++){
+        //create new array inside previously created arr for contents of individual rows
+        //intialize first index of each row to be 1
+        pascal[i] = []
+        pascal[i][0] = 1
+
+        for (let j = 1; j < i; j++){
+            // child arr is determined by inner loop, the value of pascal[i][j] = prev arr's left number + right number
+            pascal[i][j] = pascal[i-1][j-1] + pascal[i-1][j]
+        }
+        //last index of row will always be 1
+        pascal[i][i] = 1
+    }
+    return pascal;
+};
