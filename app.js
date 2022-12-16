@@ -357,3 +357,51 @@ var singleNumber = function(nums) {
 
     return nums.reduce((prev, curr) => (prev ^ curr), 0);
 };
+
+// You are given a sorted unique integer array nums.
+
+// A range [a,b] is the set of all integers from a to b (inclusive).
+
+// Return the smallest sorted list of ranges that cover all the numbers in the array exactly. That is, each element of nums is covered by exactly one of the ranges, and there is no integer x such that x is in one of the ranges but not in nums.
+
+// Each range [a,b] in the list should be output as:
+
+//     "a->b" if a != b
+//     "a" if a == b
+
+//  
+
+// Example 1:
+
+// Input: nums = [0,1,2,4,5,7]
+// Output: ["0->2","4->5","7"]
+// Explanation: The ranges are:
+// [0,2] --> "0->2"
+// [4,5] --> "4->5"
+// [7,7] --> "7"
+
+
+var summaryRanges = function(nums) {
+    //declare empty array
+    let range = [];
+    //loop through provided nums
+    for(let i = 0; i < nums.length; i++) {
+        //determine starting point (array is given in sorted order already)
+        let last = nums[i];
+        //while the index + 1 is less than the array length
+        //AND nums array at the index of the current index plus 1
+        //less nums array at current index is equal to 1
+        //INCREMENT the index
+        while(i + 1 < nums.length && (nums[i + 1] - nums[i] === 1)) {
+            i++;
+        }
+        //if nums array at current index is not equal to the first number
+        if(nums[i] !== last) {
+            //push first number with array and next number
+            range.push(last + "->" + nums[i]);
+        } else {
+            range.push(String(last));
+        }
+    }
+    return range;
+};
