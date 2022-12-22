@@ -517,3 +517,32 @@ var isUgly = function(n) {
     //return true if number was divided by 2, 3, or 5 until it reaches to 1
     return n === 1;
 };
+
+// Given an integer array nums, move all 0's to the end of it while maintaining the relative order of the non-zero elements.
+
+// Note that you must do this in-place without making a copy of the array.
+
+//  
+
+// Example 1:
+
+// Input: nums = [0,1,0,3,12]
+// Output: [1,3,12,0,0]
+
+// Example 2:
+
+// Input: nums = [0]
+// Output: [0]
+
+
+var moveZeroes = function(nums) {
+    //starting at the end, moving backwards
+    for(let i = nums.length; i--;){
+        //if number at current idx === 0
+        if(nums[i] === 0){
+            //splice and push to end
+            nums.splice(i,1);
+            nums.push(0);
+        }
+    }
+};
